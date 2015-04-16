@@ -1,0 +1,44 @@
+name: SURPRISE_HANUKKAH
+doc: Quick fetch artifacts 
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - 'SURPRISE_HANUKKAH_windows'
+      - 'SURPRISE_HANUKKAH_darwin'
+supported_os: [Windows, Darwin]
+
+---
+name: SURPRISE_HANUKKAH_windows
+doc: Quick fetch artifacts 
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - 'EventLogs'
+      - 'MFTFiles'
+      - 'WindowsRunKeys'
+      - 'ChromeHistory'
+      - 'System32_DLLs'
+supported_os: [Windows]
+---
+name: System32_DLLs
+doc: All DLL files in System32
+sources:
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '%%environ_systemroot%%\System32\*.dll'
+supported_os: [Windows]
+---
+name: SURPRISE_HANUKKAH_darwin
+doc: Quick fetch artifacts 
+sources:
+- type: ARTIFACT
+  attributes:
+    names:
+      - 'OSXLaunchAgents'
+      - 'OSXKexts'
+      - 'OSXSystemLogs'
+supported_os: [Darwin]
