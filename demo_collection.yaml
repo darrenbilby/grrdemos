@@ -5,7 +5,7 @@ sources:
   attributes:
     names:
       - 'SURPRISE_HANUKKAH_windows'
-      - 'SURPRISE_HANUKKAH_darwin'
+      - 'SURPRISE_HANUKKAH_linux'
 supported_os: [Windows, Darwin]
 
 ---
@@ -20,25 +20,37 @@ sources:
       - 'WindowsRunKeys'
       - 'ChromeHistory'
       - 'System32_DLLs'
+      - 'AllRunningProcessBinaryFiles'
 supported_os: [Windows]
 ---
 name: System32_DLLs
 doc: All DLL files in System32
 sources:
-sources:
 - type: FILE
   attributes:
     paths:
-      - '%%environ_systemroot%%\System32\*.dll'
+      - '%%environ_systemroot%%\System32\*.exe'
 supported_os: [Windows]
 ---
-name: SURPRISE_HANUKKAH_darwin
+name: SURPRISE_HANUKKAH_linux
 doc: Quick fetch artifacts 
 sources:
 - type: ARTIFACT
   attributes:
     names:
-      - 'OSXLaunchAgents'
-      - 'OSXKexts'
-      - 'OSXSystemLogs'
-supported_os: [Darwin]
+      - 'LinuxSystemBinaries'
+      - 'DebianPackagesList'
+      - 'LinuxAuthLogs'
+      - 'LinuxAuditLogs'
+      - 'AllRunningProcessBinaryFiles'
+supported_os: [Linux]
+---
+name: LinuxSystemBinaries
+doc: All binaries in /bin and /sbin
+sources:
+- type: FILE
+  attributes:
+    paths:
+      - '/bin'
+      - '/sbin'
+supported_os: [Linux]
