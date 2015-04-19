@@ -6,7 +6,7 @@ sources:
     names:
       - 'SURPRISE_HANUKKAH_windows'
       - 'SURPRISE_HANUKKAH_linux'
-supported_os: [Windows, Darwin]
+supported_os: [Windows, Linux]
 
 ---
 name: SURPRISE_HANUKKAH_windows
