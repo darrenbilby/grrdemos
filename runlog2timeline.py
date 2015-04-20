@@ -8,9 +8,9 @@ def RunLog2Timeline(client_id, directories, base_dir='/grrfuse/fs/os'):
   hostname = console_utils.ClientIdToHostname(client_id)
   filename = '/tmp/plaso/%s.plaso' % hostname
   for dir_path in directories:
-    path = os.path.join(base_dir, client_id, dir_path)
+    path = os.path.join(base_dir, client_id, dir_path.lstrip('/'))
     if os.path.exists(path):
-      command = "/usr/bin/log2timeline.py --hashers sha256 -p %s %s" % (filename, path)
+      command = "/usr/bin/log2timeline.py --hashers sha256 -p %s %s  > /dev/null 2>&1" % (filename, path)
       print 'Running: ', command
       subprocess.check_call(command.split())
   if os.path.exists(filename):
