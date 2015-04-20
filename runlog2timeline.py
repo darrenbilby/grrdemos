@@ -14,7 +14,7 @@ def RunLog2Timeline(client_id, directories, base_dir='/grrfuse/fs/os'):
     print 'Running: ', import_command
     subprocess.check_call(import_command, shell=True)
 
-DIRS = [r'C:/Windows/System32/winevt/Logs', 'C:/Windows', '/var/log', '/bin', '/sbin', '/usr/sbin']
+DIRS = [r'C:/Windows/System32/winevt/Logs', 'C:/Program Files', '/var/log', '/bin', '/sbin', '/usr/sbin']
 
 for c in SearchClients('.'):
   RunLog2Timeline(c[0].urn, DIRS)
