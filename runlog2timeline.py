@@ -10,11 +10,11 @@ def RunLog2Timeline(client_id, directories, base_dir='/grrfuse'):
   for dir_path in directories:
     path = os.path.join(base_dir, client_id, 'fs/os', dir_path.lstrip('/'))
     if os.path.exists(path):
-      command = "/usr/bin/log2timeline.py --hashers sha256 -p %s \"%s\" > /dev/null 2>&1" % (filename, path)
-      print 'Running: ', command
+      command = "/usr/bin/log2timeline.py --single-thread --hashers sha256 -p %s \"%s\" > /dev/null 2>&1" % (filename, path)
+      print 'Processing: ', path #,command
       subprocess.check_call(command, shell=True)
   if os.path.exists(filename):
-    import_command = "/usr/bin/psort.py -a -o timesketch --name '%s Timeline' %s" % (hostname, filename)
+    import_command = "/usr/bin/psort.py -a -o timesketch --name '%s' %s" % (hostname, filename)
     print 'Running: ', import_command
     subprocess.check_call(import_command, shell=True)
 
