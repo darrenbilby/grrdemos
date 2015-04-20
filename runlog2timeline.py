@@ -1,3 +1,7 @@
+# Simple GRR script to run log2timeline on all machines in a GRR instance via GRR Fuse.
+# This runs log2timeline on a specific set of directories on each host, and then uses psort to send
+# the data to ElasticSearch via the timesketch plugin.
+
 def RunLog2Timeline(client_id, directories, base_dir='/grrfuse/fs/os'):
   import subprocess
   client_id = client_id.Basename()
@@ -6,7 +10,7 @@ def RunLog2Timeline(client_id, directories, base_dir='/grrfuse/fs/os'):
   for dir_path in directories:
     path = os.path.join(base_dir, client_id, dir_path)
     if os.path.exists(path):
-      command = "/usr/bin/log2timeline.py -p %s %s" % (filename, path)
+      command = "/usr/bin/log2timeline.py --hashers sha256 -p %s %s" % (filename, path)
       print 'Running: ', command
       subprocess.check_call(command.split())
   if os.path.exists(filename):
